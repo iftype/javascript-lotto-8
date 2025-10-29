@@ -2,7 +2,11 @@ const QUANTITY = 6;
 const MIN_LANGE = 1;
 const MAX_LANGE = 45;
 
-class LottoValidator {
+class LottoUtilValidator {
+  static isNumber(lotto) {
+    return lotto.every((num) => typeof num === 'number');
+  }
+
   static isQuantity(lotto) {
     return lotto.length === QUANTITY;
   }
@@ -21,4 +25,4 @@ class LottoValidator {
   }
 }
 
-export default LottoValidator;
+export default LottoUtilValidator;
