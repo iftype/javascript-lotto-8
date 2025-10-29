@@ -21,6 +21,11 @@ class UtilValidator {
     if (Number(param) <= 0) return false;
     return true;
   }
+
+  static isInteger(param) {
+    if (!UtilValidator.isConvertNum(param)) return false;
+    return Number.isInteger(Number(param));
+  }
 }
 
 export default UtilValidator;
