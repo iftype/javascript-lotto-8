@@ -15,6 +15,12 @@ const UtilValidator = {
   isNum(param) {
     return typeof param === 'number';
   },
+
+  isPositive(param) {
+    if (!this.isConvertNum(param)) return false;
+    if (Number(param) <= 0) return false;
+    return true;
+  },
 };
 
 export default UtilValidator;
