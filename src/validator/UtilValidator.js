@@ -11,6 +11,10 @@ const UtilValidator = {
     }
     return true;
   },
+
+  isNum(param) {
+    return typeof param === 'number';
+  },
 };
 
 export default UtilValidator;
