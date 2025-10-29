@@ -1,10 +1,12 @@
+import UtilValidator from './UtilValidator.js';
+
 const QUANTITY = 6;
 const MIN_LANGE = 1;
 const MAX_LANGE = 45;
 
 class LottoUtilValidator {
   static isNumber(lotto) {
-    return lotto.every((num) => typeof num === 'number');
+    return lotto.every((num) => UtilValidator.isNum(num));
   }
 
   static isQuantity(lotto) {
