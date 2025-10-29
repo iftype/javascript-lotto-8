@@ -1,5 +1,5 @@
-const UtilValidator = {
-  isConvertNum(param) {
+class UtilValidator {
+  static isConvertNum(param) {
     if (param === null || typeof param === 'undefined') {
       return false;
     }
@@ -10,17 +10,17 @@ const UtilValidator = {
       return false;
     }
     return true;
-  },
+  }
 
-  isNum(param) {
+  static isNum(param) {
     return typeof param === 'number';
-  },
+  }
 
-  isPositive(param) {
-    if (!this.isConvertNum(param)) return false;
+  static isPositive(param) {
+    if (!UtilValidator.isConvertNum(param)) return false;
     if (Number(param) <= 0) return false;
     return true;
-  },
-};
+  }
+}
 
 export default UtilValidator;
