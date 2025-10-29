@@ -1,6 +1,27 @@
 import UtilValidator from '../../src/validator/UtilValidator.js';
 
 describe('UtilValidator', () => {
+  describe('양수인지 검사 isPositive', () => {
+    test.each([
+      [1, true],
+      [0.1, true],
+      ['1', true],
+    ])('⭕성공 테스트 (%s) return %s', (test, expected) => {
+      expect(UtilValidator.isPositive(test)).toBe(expected);
+    });
+    test.each([
+      ['', false],
+      [undefined, false],
+      [null, false],
+      ['0', false],
+      [0, false],
+      [-1, false],
+      ['str', false],
+    ])('❌실패 테스트(%s) return %s', (test, expected) => {
+      expect(UtilValidator.isPositive(test)).toBe(expected);
+    });
+  });
+
   describe('숫자 변환 가능 여부 검사 isConvertNum', () => {
     test.each([
       ['1', true],
