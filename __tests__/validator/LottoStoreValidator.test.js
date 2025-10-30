@@ -25,8 +25,8 @@ describe('LottoStoreValidator', () => {
       [0, ERROR_MESSAGES.POSITVE],
       [-1, ERROR_MESSAGES.POSITVE],
 
-      [900, ERROR_MESSAGES.LOTTO_UNIT],
-      [1100, ERROR_MESSAGES.LOTTO_UNIT],
+      [900, ERROR_MESSAGES.PURCHASE_UNIT],
+      [1100, ERROR_MESSAGES.PURCHASE_UNIT],
     ])('❌실패 테스트(%s) throw Error %s', (test, expected) => {
       expect(() => LottoStoreValidator.validate(test)).toThrow(expected);
     });

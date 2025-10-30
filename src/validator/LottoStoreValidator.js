@@ -13,7 +13,7 @@ class LottoStoreValidator {
       throw new Error(ERROR_MESSAGES.POSITVE);
     }
     if (Number(purchase) % 1000 !== 0) {
-      throw new Error(ERROR_MESSAGES.LOTTO_UNIT);
+      throw new Error(ERROR_MESSAGES.PURCHASE_UNIT);
     }
   }
 }
