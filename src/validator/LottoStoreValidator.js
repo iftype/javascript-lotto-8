@@ -1,4 +1,5 @@
 import ERROR_MESSAGES from '../constants/errorMessages.js';
+import LOTTO_SETTING from '../constants/lottoSetting.js';
 import UtilValidator from './UtilValidator.js';
 
 class LottoStoreValidator {
@@ -12,7 +13,7 @@ class LottoStoreValidator {
     if (!UtilValidator.isPositive(purchase)) {
       throw new Error(ERROR_MESSAGES.POSITVE);
     }
-    if (Number(purchase) % 1000 !== 0) {
+    if (Number(purchase) % LOTTO_SETTING.PRICE !== 0) {
       throw new Error(ERROR_MESSAGES.PURCHASE_UNIT);
     }
   }
