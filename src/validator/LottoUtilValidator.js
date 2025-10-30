@@ -1,8 +1,5 @@
 import UtilValidator from './UtilValidator.js';
-
-const QUANTITY = 6;
-const MIN_LANGE = 1;
-const MAX_LANGE = 45;
+import LOTTO_SETTING from '../constants/lottoSetting.js';
 
 class LottoUtilValidator {
   static isNumber(lotto) {
@@ -10,11 +7,13 @@ class LottoUtilValidator {
   }
 
   static isQuantity(lotto) {
-    return lotto.length === QUANTITY;
+    return lotto.length === LOTTO_SETTING.QUANTITY;
   }
 
   static isOutRange(lotto) {
-    return lotto.some((num) => num < MIN_LANGE || MAX_LANGE < num);
+    const underCondition = (num) => num < LOTTO_SETTING.MIN_LANGE;
+    const overCondition = (num) => LOTTO_SETTING.MAX_LANGE < num;
+    return lotto.some((num) => underCondition(num) || overCondition(num));
   }
 
   static isDuplicate(lotto) {
