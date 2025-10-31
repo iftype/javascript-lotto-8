@@ -3,7 +3,6 @@ import PurchaseValidator from '../../src/validator/PurchaseValidator.js';
 
 describe('PurchaseValidator 클래스 테스트', () => {
   describe('구매금액 유효성 검사 ⭕실패 테스트', () => {
-    const purchase = new PurchaseValidator();
     test.each([
       // 숫자변환검사
       ['1,000', ERROR_MESSAGES.FORMAT_NOT_NUM],
@@ -14,13 +13,12 @@ describe('PurchaseValidator 클래스 테스트', () => {
       [900, ERROR_MESSAGES.PURCHASE_UNIT],
       [1500, ERROR_MESSAGES.PURCHASE_UNIT],
     ])('❌ validate 테스트 %s throw Error %s', (amount, errorMessage) => {
-      expect(() => purchase.validate(amount)).toThrow(errorMessage);
+      expect(() => PurchaseValidator.validate(amount)).toThrow(errorMessage);
     }); // 실패테스트
   }); //describe
   describe('구매금액 유효성 검사 ⭕성공테스트', () => {
-    const purchase = new PurchaseValidator();
     test.each([[1000], [15000]])('통과해야됨 %s', (amount) => {
-      expect(() => purchase.validate(amount)).not.toThrow();
+      expect(() => PurchaseValidator.validate(amount)).not.toThrow();
     }); // 성공테스트
   }); //describe
 }); //describe 클래스 테스트
