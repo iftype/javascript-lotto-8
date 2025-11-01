@@ -1,4 +1,4 @@
-class LottoResponseDto {
+class LottosResponseDto {
   #lottos;
 
   constructor({ lottos }) {
@@ -12,4 +12,4 @@ class LottoResponseDto {
     };
   }
 }
-export default LottoResponseDto;
+export default LottosResponseDto;

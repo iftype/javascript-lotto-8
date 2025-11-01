@@ -1,6 +1,6 @@
-import PurchaseValidator from '../validator/PurchaseValidator.js';
+import PurchaseValidator from '../../validator/PurchaseValidator.js';
 
-class LottoRequestDto {
+class PurchaseAmountDto {
   #purchaseAmount;
   constructor({ purchaseAmount }) {
     PurchaseValidator.validate(purchaseAmount);
@@ -11,4 +11,4 @@ class LottoRequestDto {
     return this.#purchaseAmount;
   }
 }
-export default LottoRequestDto;
+export default PurchaseAmountDto;
