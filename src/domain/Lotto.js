@@ -2,11 +2,11 @@ import ERROR_MESSAGES from '../constants/errorMessages.js';
 import LOTTO_SETTING from '../constants/lottoSetting.js';
 
 class Lotto {
-  #numbers;
+  #lottoNumbers;
 
   constructor(numbers) {
+    this.#lottoNumbers = new Set(numbers);
     this.#validate(numbers);
-    this.#numbers = this.#sort(numbers);
   }
 
   #validate(numbers) {
@@ -18,22 +18,25 @@ class Lotto {
     }
   }
 
-  #sort(numbers) {
-    return [...numbers].sort((a, b) => a.getNumber() - b.getNumber());
-  }
-
   #isQuantity(numbers) {
     return numbers.length === LOTTO_SETTING.MAX_QUANTITY;
   }
 
   #isDuplicate(numbers) {
-    const newLotto = numbers.map((number) => number.getNumber());
-    const setLotto = new Set(newLotto);
-    return setLotto.size === newLotto.length;
+    return this.#lottoNumbers.size === numbers.length;
+  }
+
+  hasLottoNumber(lottoNumber) {
+    return this.#lottoNumbers.has(lottoNumber);
+  }
+
+  countNumbers(numbers) {
+    return numbers.filter((number) => this.#lottoNumbers.has(number)).length;
   }
 
   getNumbers() {
-    return [...this.#numbers].map((number) => number.getNumber());
+    const numbers = Array.from(this.#lottoNumbers).map((lottoNumber) => lottoNumber.getNumber());
+    return numbers.sort((a, b) => a - b);
   }
 }
 export default Lotto;
