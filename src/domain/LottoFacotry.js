@@ -1,22 +1,23 @@
 import LOTTO_SETTING from '../constants/lottoSetting.js';
 import Lotto from './Lotto.js';
 import LottoNumber from './LottoNumber.js';
-import LottoNumberInstance from './LottoNumberFactory.js';
 
 class LottoFactory {
   #picker;
+  #lottoNumberFactory;
 
-  constructor(picker) {
+  constructor(picker, lottoNumberFactory) {
     this.#picker = picker;
+    this.#lottoNumberFactory = lottoNumberFactory;
   }
 
   createLotto() {
-    const newArray = this.#getNumbers();
-    const numbers = newArray.map((number) => LottoNumberInstance.getLottoNumber(number));
+    const newArray = this.#generateNumbers();
+    const numbers = newArray.map((number) => this.#lottoNumberFactory.getLottoNumber(number));
     return new Lotto(numbers);
   }
 
-  #getNumbers() {
+  #generateNumbers() {
     const [min, max] = Object.values(LottoNumber.getRange());
     const quan = LOTTO_SETTING.MAX_QUANTITY;
     return this.#picker(min, max, quan);

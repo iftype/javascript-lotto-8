@@ -24,12 +24,27 @@ describe('로또 클래스 테스트', () => {
   });
 
   describe('메서드 테스트', () => {
-    test('⭕메서드 테스트() throw Error ', () => {
+    test('⭕메서드 테스트 getNumbers() ', () => {
       const numbers = [6, 2, 3, 4, 5, 1];
       const lotto = new Lotto(createlottoNumbers(numbers));
 
       const resultArray = [1, 2, 3, 4, 5, 6];
       expect(lotto.getNumbers()).toEqual(resultArray);
+    }); // 성공 테스트
+
+    test('⭕메서드 테스트 hasNumber(number)', () => {
+      const numbers = [6, 2, 3, 4, 5, 1];
+      const lotto = new Lotto(createlottoNumbers(numbers));
+
+      expect(lotto.hasNumber(6)).toBe(true);
+    }); // 성공 테스트
+
+    test('⭕메서드 테스트 countNumbers(numbers)', () => {
+      const numbers = [6, 2, 3, 4, 5, 1];
+      const lotto = new Lotto(createlottoNumbers(numbers));
+
+      const resultArray = [1, 2, 3, 4, 5, 6];
+      expect(lotto.countNumbers(resultArray)).toBe(6);
     }); // 성공 테스트
   });
 });

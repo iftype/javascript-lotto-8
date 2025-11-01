@@ -1,7 +1,7 @@
 import Lottos from '../../src/domain/Lottos.js';
 import LottoFactory from '../../src/domain/LottoFacotry.js';
 
-function pickTestNumber(a, b, c) {
+function pickTestNumber() {
   return [2, 1, 3, 4, 5, 6];
 }
 const factory = new LottoFactory(pickTestNumber);
