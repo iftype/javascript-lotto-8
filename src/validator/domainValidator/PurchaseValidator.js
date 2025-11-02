@@ -1,5 +1,5 @@
 import ERROR_MESSAGES from '../../constants/errorMessages.js';
-import LottoPrice from '../../domain/LottoPrice.js';
+import LOTTO_SETTING from '../../constants/lottoSetting.js';
 
 class PurchaseValidator {
   static validate(purchaseAmount) {
@@ -9,7 +9,7 @@ class PurchaseValidator {
   }
 
   static #isModUnit(purchaseAmount) {
-    return LottoPrice.modUnit(purchaseAmount) === 0;
+    return purchaseAmount % LOTTO_SETTING.PURCHASE_UNIT === 0;
   }
 }
 

@@ -10,6 +10,7 @@ const LOTTO_SETTING = Object.freeze({
   }),
   MIN_RANGE: 1,
   MAX_RANGE: 45,
+  PURCHASE_UNIT: 1000,
 });
 
 export default LOTTO_SETTING;

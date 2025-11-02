@@ -1,4 +1,4 @@
-import LottoPrice from '../domain/LottoPrice.js';
+import LOTTO_SETTING from '../constants/lottoSetting.js';
 import PurchasedLottosDto from '../dto/responseDto/PurchasedLottosDto.js';
 import PurchaseValidator from '../validator/domainValidator/PurchaseValidator.js';
 
@@ -16,7 +16,7 @@ class LottoPurchaseService {
 
   getPurchasedLottos() {
     const { purchaseAmount } = this.lottoRepository.findAll('admin');
-    const lottoCount = LottoPrice.exchange(purchaseAmount);
+    const lottoCount = purchaseAmount / LOTTO_SETTING.PURCHASE_UNIT;
     const lottos = this.lottoStore.buyLotto(lottoCount);
     this.lottoRepository.save('admin', { lottos });
     return new PurchasedLottosDto({ lottos });
