@@ -1,10 +1,12 @@
-import PurchaseValidator from '../../validator/PurchaseValidator.js';
+import InputPurchaseAmountValidator from '../../validator/inputValidator/InputPurchaseAmountValidator.js';
 
 class PurchaseAmountDto {
   #purchaseAmount;
-  constructor({ purchaseAmount }) {
-    PurchaseValidator.validate(purchaseAmount);
-    this.#purchaseAmount = Number(purchaseAmount);
+
+  constructor(purchaseAmount) {
+    const convertedPurchaseAmount = Number(purchaseAmount);
+    InputPurchaseAmountValidator.validate(convertedPurchaseAmount);
+    this.#purchaseAmount = convertedPurchaseAmount;
   }
 
   get purchaseAmount() {
