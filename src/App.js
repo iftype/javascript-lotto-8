@@ -1,6 +1,5 @@
 import LottoController from './controller/LottoController.js';
 import LottoFactory from './domain/LottoFacotry.js';
-import LottoView from './view/LottoView.js';
 import LottoStore from './domain/LottoStore.js';
 import LottoNumberFactory from './domain/LottoNumberFactory.js';
 import LottoRepository from './repository/LottoRepository.js';
@@ -8,6 +7,8 @@ import LottoPurchaseService from './services/LottoPurchaseService.js';
 import RandomPicker from './utils/RandomPicker.js';
 import LottoWinningFactory from './domain/LottoWinningFactory.js';
 import WinningResultService from './services/WinningResultService.js';
+import LottoInputView from './view/LottoInputView.js';
+import LottoOutputView from './view/LottoOutputView.js';
 
 class App {
   #lottoController;
@@ -26,13 +27,15 @@ class App {
     const lottoWinningFactory = new LottoWinningFactory(lottoNumberFactory);
     const winningResultService = new WinningResultService(lottoWinningFactory, lottoRepository);
 
-    const lottoView = new LottoView();
+    const lottoInputView = new LottoInputView();
+    const lottoOutputView = new LottoOutputView();
 
-    this.#lottoController = new LottoController(
+    this.#lottoController = new LottoController({
       lottoPurchaseService,
       winningResultService,
-      lottoView,
-    );
+      lottoOutputView,
+      lottoInputView,
+    });
   }
 
   async run() {

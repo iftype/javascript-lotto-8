@@ -4,27 +4,29 @@ import WinningNumbersDto from '../dto/requestDto/WinningNumbersDto.js';
 
 class LottoController {
   #lottoPurchaseService;
-  #lottoView;
   #winningResultService;
+  #lottoInputView;
+  #lottoOutputView;
 
-  constructor(lottoPurchaseService, winningResultService, lottoView) {
+  constructor({ lottoPurchaseService, winningResultService, lottoOutputView, lottoInputView }) {
     this.#lottoPurchaseService = lottoPurchaseService;
     this.#winningResultService = winningResultService;
-    this.#lottoView = lottoView;
+    this.#lottoInputView = lottoInputView;
+    this.#lottoOutputView = lottoOutputView;
   }
 
   async processLottoPurchase() {
     try {
-      const purchaseAmount = await this.#lottoView.readPurchaseAmount();
+      const purchaseAmount = await this.#lottoInputView.readPurchaseAmount();
       const purchaseAmountDto = new PurchaseAmountDto(purchaseAmount);
       this.#lottoPurchaseService.savePurchaseAmount(purchaseAmountDto);
 
       const purchasedLottos = this.#lottoPurchaseService.getPurchasedLottos();
       const purchasedLottosDto = purchasedLottos.toJSON();
-      this.#lottoView.printPurchaseLottos(purchasedLottosDto);
+      this.#lottoOutputView.printPurchaseLottos(purchasedLottosDto);
       return this.#processWinningResult();
     } catch (err) {
-      this.#lottoView.printError(err);
+      this.#lottoOutputView.printError(err);
       return this.processLottoPurchase();
     }
   }
@@ -32,21 +34,21 @@ class LottoController {
   // 메서드명 고민해보기
   async #processWinningResult() {
     try {
-      const winningNumbers = await this.#lottoView.readWinningNumbers();
+      const winningNumbers = await this.#lottoInputView.readWinningNumbers();
       const purchaseAmountDto = new WinningNumbersDto(winningNumbers);
       this.#winningResultService.saveWinningNumbers(purchaseAmountDto);
 
-      const bonusNumber = await this.#lottoView.readBonusNumber();
+      const bonusNumber = await this.#lottoInputView.readBonusNumber();
       const bonusNumberDto = new BonusNumberDto(bonusNumber);
       this.#winningResultService.saveBonusNumber(bonusNumberDto);
 
       const winningResult = this.#winningResultService.getWinningResult();
       const winningResultDto = winningResult.toJSON();
-      this.#lottoView.printWinningResult(winningResultDto);
+      this.#lottoOutputView.printWinningResult(winningResultDto);
 
       return true;
     } catch (err) {
-      this.#lottoView.printError(err);
+      this.#lottoOutputView.printError(err);
       return this.#processWinningResult();
     }
   }
