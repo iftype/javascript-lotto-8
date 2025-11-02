@@ -18,8 +18,6 @@ class BonusNumberValidator {
   }
 
   static #isDuplicate(winningLottoNumbers, bonusLottoNumber) {
-    console.log(winningLottoNumbers, bonusLottoNumber);
-    console.log(winningLottoNumbers.includes(bonusLottoNumber));
     return !winningLottoNumbers.includes(bonusLottoNumber);
   }
 }

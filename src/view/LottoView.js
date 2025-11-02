@@ -29,6 +29,10 @@ class LottoView {
       Console.print(`[${lotto.join(', ')}]`);
     });
   }
+
+  printError(err) {
+    Console.print(err.message);
+  }
 }
 
 export default LottoView;
