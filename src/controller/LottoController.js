@@ -1,11 +1,15 @@
+import BonusNumberDto from '../dto/requestDto/BonusNumberDto.js';
 import PurchaseAmountDto from '../dto/requestDto/PurchaseAmountDto.js';
+import WinningNumbersDto from '../dto/requestDto/WinningNumbersDto.js';
 
 class LottoController {
   #lottoPurchaseService;
   #lottoView;
+  #winningResultService;
 
-  constructor(lottoPurchaseService, lottoView) {
+  constructor(lottoPurchaseService, winningResultService, lottoView) {
     this.#lottoPurchaseService = lottoPurchaseService;
+    this.#winningResultService = winningResultService;
     this.#lottoView = lottoView;
   }
 
@@ -18,8 +22,7 @@ class LottoController {
       const purchasedLottos = this.#lottoPurchaseService.getPurchasedLottos();
       const purchasedLottosDto = purchasedLottos.toJSON();
       this.#lottoView.printPurchaseLottos(purchasedLottosDto);
-      return '';
-      // return this.getWinningRate();
+      return this.#processWinningResult();
     } catch (err) {
       this.#lottoView.printError(err);
       return this.processLottoPurchase();
@@ -27,7 +30,26 @@ class LottoController {
   }
 
   // 메서드명 고민해보기
-  async getWinningRate() {}
+  async #processWinningResult() {
+    try {
+      const winningNumbers = await this.#lottoView.readWinningNumbers();
+      const purchaseAmountDto = new WinningNumbersDto(winningNumbers);
+      this.#winningResultService.saveWinningNumbers(purchaseAmountDto);
+
+      const bonusNumber = await this.#lottoView.readBonusNumber();
+      const bonusNumberDto = new BonusNumberDto(bonusNumber);
+      this.#winningResultService.saveBonusNumber(bonusNumberDto);
+
+      const winningResult = this.#winningResultService.getWinningResult();
+      const winningResultDto = winningResult.toJSON();
+      this.#lottoView.printWinningResult(winningResultDto);
+
+      return true;
+    } catch (err) {
+      this.#lottoView.printError(err);
+      return this.#processWinningResult();
+    }
+  }
 }
 
 export default LottoController;

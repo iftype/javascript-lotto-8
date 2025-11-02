@@ -6,8 +6,7 @@ class LottoWinningFactory {
   }
 
   createWinningLotto(numbers) {
-    const newArray = numbers;
-    return newArray.map((number) => this.#lottoNumberFactory.getLottoNumber(number));
+    return numbers.map((number) => this.#lottoNumberFactory.getLottoNumber(number));
   }
 
   createBonusLotto(number) {

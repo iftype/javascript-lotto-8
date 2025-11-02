@@ -1,6 +1,5 @@
 import ERROR_MESSAGES from '../../constants/errorMessages.js';
 import LOTTO_SETTING from '../../constants/lottoSetting.js';
-import LottoNumber from '../../domain/LottoNumber.js';
 
 class WinningNumbersValidator {
   static validate(winningNumbers) {
@@ -16,7 +15,7 @@ class WinningNumbersValidator {
   }
 
   static #isInRange(winningNumbers) {
-    const [MIN_RANGE, MAX_RANGE] = Object.values(LottoNumber.getRange());
+    const { MIN_RANGE, MAX_RANGE } = LOTTO_SETTING;
     return winningNumbers.every((number) => MIN_RANGE <= number && number <= MAX_RANGE);
   }
 

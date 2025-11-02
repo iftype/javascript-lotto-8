@@ -6,6 +6,8 @@ import LottoNumberFactory from './domain/LottoNumberFactory.js';
 import LottoRepository from './repository/LottoRepository.js';
 import LottoPurchaseService from './services/LottoPurchaseService.js';
 import RandomPicker from './utils/RandomPicker.js';
+import LottoWinningFactory from './domain/LottoWinningFactory.js';
+import WinningResultService from './services/WinningResultService.js';
 
 class App {
   #lottoController;
@@ -17,16 +19,20 @@ class App {
     const randomStrategy = new RandomPicker();
     const randomLottoFactory = new LottoFactory(randomStrategy, lottoNumberFactory);
     const lottoStore = new LottoStore(randomLottoFactory);
-
-    // lottoWinning: 고정값 전략 팩토리 주입
-    // const lottoWinningFactory = new LottoWinningFactory(lottoNumberFactory);
-
-    // lottoSerivce 주입단계
     const lottoRepository = new LottoRepository();
     const lottoPurchaseService = new LottoPurchaseService(lottoStore, lottoRepository);
 
+    // lottoSerivce 주입단계
+    const lottoWinningFactory = new LottoWinningFactory(lottoNumberFactory);
+    const winningResultService = new WinningResultService(lottoWinningFactory, lottoRepository);
+
     const lottoView = new LottoView();
-    this.#lottoController = new LottoController(lottoPurchaseService, lottoView);
+
+    this.#lottoController = new LottoController(
+      lottoPurchaseService,
+      winningResultService,
+      lottoView,
+    );
   }
 
   async run() {
