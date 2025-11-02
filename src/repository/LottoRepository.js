@@ -5,8 +5,17 @@ class LottoRepository {
     this.#lottoDB = new Map();
   }
 
-  save(id, Lottos) {
-    this.#lottoDB.set(id, Lottos);
+  save(id, data) {
+    this.#lottoDB.set(id, data);
+  }
+
+  update(id, data) {
+    if (!this.#lottoDB.has(id)) {
+      throw new Error('저장된 데이터가 없습니다');
+    }
+    const repoData = this.#lottoDB.get(id);
+    const insertData = { ...repoData, ...data };
+    this.#lottoDB.set(id, insertData);
   }
 
   findAll(id) {
