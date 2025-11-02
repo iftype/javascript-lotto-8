@@ -1,5 +1,5 @@
-import ERROR_MESSAGES from '../constants/errorMessages.js';
-import LottoPrice from '../domain/LottoPrice.js';
+import ERROR_MESSAGES from '../../constants/errorMessages.js';
+import LottoPrice from '../../domain/LottoPrice.js';
 
 class PurchaseValidator {
   static validate(purchaseAmount) {
