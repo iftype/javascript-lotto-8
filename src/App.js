@@ -14,15 +14,15 @@ class App {
 
   constructor() {
     const lottoNumberFactory = LottoNumberFactory;
-
-    // lottoStore: 랜덤 전략 팩토리 주입
-    const randomStrategy = new RandomPicker();
-    const randomLottoFactory = new LottoFactory(randomStrategy, lottoNumberFactory);
-    const lottoStore = new LottoStore(randomLottoFactory);
     const lottoRepository = new LottoRepository();
+
+    // 구매 의존성, 랜덤조건 주입
+    const randomPiker = new RandomPicker();
+    const randomLottoFactory = new LottoFactory(randomPiker, lottoNumberFactory);
+    const lottoStore = new LottoStore(randomLottoFactory);
     const lottoPurchaseService = new LottoPurchaseService(lottoStore, lottoRepository);
 
-    // lottoSerivce 주입단계
+    // 당첨 의존성, 고정 생성 팩토리 주입
     const lottoWinningFactory = new LottoWinningFactory(lottoNumberFactory);
     const winningResultService = new WinningResultService(lottoWinningFactory, lottoRepository);
 

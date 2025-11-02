@@ -1,10 +1,11 @@
 import LottoFactory from '../../src/domain/LottoFacotry.js';
-import FixedPicker from '../../src/domain/strategy/FixedPicker.js';
 
 const mockLottoNumberFactory = {
   getLottoNumber: jest.fn((number) => ({ getNumber: () => number })),
 };
-const fixed = new FixedPicker();
+const fixed = {
+  pick: (arr) => arr,
+};
 describe('LottoFactory 테스트', () => {
   describe('생성 테스트', () => {
     test('', () => {

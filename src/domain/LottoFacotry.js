@@ -1,16 +1,16 @@
 import Lotto from './Lotto.js';
 
 class LottoFactory {
-  #strategy;
+  #piker;
   #lottoNumberFactory;
 
-  constructor(strategy, lottoNumberFactory) {
-    this.#strategy = strategy;
+  constructor(piker, lottoNumberFactory) {
+    this.#piker = piker;
     this.#lottoNumberFactory = lottoNumberFactory;
   }
 
   createLotto(numbers) {
-    const newArray = this.#strategy.pick(numbers);
+    const newArray = this.#piker.pick(numbers);
     const creatdeNumbers = newArray.map((number) =>
       this.#lottoNumberFactory.getLottoNumber(number),
     );
