@@ -6,7 +6,7 @@ class BonusNumberValidator {
     if (!BonusNumberValidator.#isInRange(bonusLottoNumber)) {
       throw new Error(ERROR_MESSAGES.LOTTO_RANGE);
     }
-    if (!BonusNumberValidator.#isDuplicate(winningLottoNumbers, bonusLottoNumber)) {
+    if (BonusNumberValidator.#isDuplicate(winningLottoNumbers, bonusLottoNumber)) {
       throw new Error(ERROR_MESSAGES.LOTTO_DUPLICATE);
     }
   }
@@ -18,7 +18,7 @@ class BonusNumberValidator {
   }
 
   static #isDuplicate(winningLottoNumbers, bonusLottoNumber) {
-    return !winningLottoNumbers.includes(bonusLottoNumber);
+    return winningLottoNumbers.includes(bonusLottoNumber);
   }
 }
 
