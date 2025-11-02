@@ -8,6 +8,8 @@ const LOTTO_SETTING = Object.freeze({
     FIFTH: 5000,
     OTHER: 0,
   }),
+  MIN_RANGE: 1,
+  MAX_RANGE: 45,
 });
 
 export default LOTTO_SETTING;

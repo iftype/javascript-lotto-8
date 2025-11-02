@@ -1,4 +1,5 @@
 import ERROR_MESSAGES from '../constants/errorMessages.js';
+import LOTTO_SETTING from '../constants/lottoSetting.js';
 import LottoNumber from './LottoNumber.js';
 
 class LottoNumberFactory {
@@ -9,8 +10,8 @@ class LottoNumberFactory {
   }
 
   #initNumberMap() {
-    const [min, max] = Object.values(LottoNumber.getRange());
-    for (let number = min; number <= max; number += 1) {
+    const { MIN_RANGE, MAX_RANGE } = LOTTO_SETTING;
+    for (let number = MIN_RANGE; number <= MAX_RANGE; number += 1) {
       this.#numberMap.set(number, new LottoNumber(number));
     }
   }

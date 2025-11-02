@@ -21,6 +21,7 @@ class LottoController {
       return '';
       // return this.getWinningRate();
     } catch (err) {
+      console.log(err);
       this.#lottoView.printError(err);
       return this.processLottoPurchase();
     }

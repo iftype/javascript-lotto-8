@@ -4,9 +4,8 @@ import LottoView from './view/LottoView.js';
 import LottoStore from './domain/LottoStore.js';
 import LottoNumberFactory from './domain/LottoNumberFactory.js';
 import LottoRepository from './repository/LottoRepository.js';
-import RandomPicker from './domain/strategy/RandomPicker.js';
-import LottoWinningFactory from './domain/LottoWinningFactory.js';
 import LottoPurchaseService from './services/LottoPurchaseService.js';
+import RandomPicker from './utils/RandomPicker.js';
 
 class App {
   #lottoController;
