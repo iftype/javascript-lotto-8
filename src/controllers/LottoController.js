@@ -31,7 +31,6 @@ class LottoController {
     }
   }
 
-  // 메서드명 고민해보기
   async #processWinningResult() {
     try {
       const winningNumbers = await this.#lottoInputView.readWinningNumbers();

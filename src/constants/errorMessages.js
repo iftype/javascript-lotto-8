@@ -1,6 +1,6 @@
 import LOTTO_SETTING from './lottoSetting.js';
 
-const PREFIX = '[ERROR] ';
+const PREFIX = '[ERROR]';
 const format = (unit) => new Intl.NumberFormat().format(unit);
 const { PURCHASE_UNIT, MAX_QUANTITY, MAX_LANGE, MIN_RANGE } = LOTTO_SETTING;
 
