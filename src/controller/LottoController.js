@@ -1,40 +1,33 @@
-import LottoRequestDto from '../dto/LottoRequestDto.js';
+import PurchaseAmountDto from '../dto/requestDto/PurchaseAmountDto.js';
 
 class LottoController {
-  #lottoService;
+  #lottoPurchaseService;
   #lottoView;
 
-  constructor(lottoService, lottoView) {
-    this.#lottoService = lottoService;
+  constructor(lottoPurchaseService, lottoView) {
+    this.#lottoPurchaseService = lottoPurchaseService;
     this.#lottoView = lottoView;
   }
 
-  async purchase() {
+  async processLottoPurchase() {
     try {
       const purchaseAmount = await this.#lottoView.readPurchaseAmount();
-      const requestDTO = new LottoRequestDto({ purchaseAmount });
-      const responseDto = this.#lottoService.purchaseLotto(requestDTO);
-      const resultLottos = responseDto.toJSON();
-      this.#lottoView.printPurchaseLottos(resultLottos);
-      return this.getWinningRate();
+      const purchaseAmountDto = new PurchaseAmountDto(purchaseAmount);
+      this.#lottoPurchaseService.savePurchaseAmount(purchaseAmountDto);
+
+      const purchasedLottos = this.#lottoPurchaseService.getPurchasedLottos();
+      const purchasedLottosDto = purchasedLottos.toJSON();
+      this.#lottoView.printPurchaseLottos(purchasedLottosDto);
+      return '';
+      // return this.getWinningRate();
     } catch (err) {
-      // 에러 출력 메세지 컴포넌트만들기 ㅡ ㅡ ㅡ ㅡㅡ ㅡㅡㅡ ㅡㅡ ㅡ ㅡ ㅡㅡㅡ ㅡㅡ
-      console.log(err);
-      return this.purchase();
+      this.#lottoView.printError(err);
+      return this.processLottoPurchase();
     }
   }
 
   // 메서드명 고민해보기
-  async getWinningRate() {
-    // try {
-    //   const winningNumbers = await this.#lottoView.readWinningNumbers();
-    //   const bonusNumber = await this.#lottoView.readBonusNumber();
-    //   const result = this.#lottoService.getWinningRate(winningNumbers, bonusNumber);
-    //   console.log(result);
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  }
+  async getWinningRate() {}
 }
 
 export default LottoController;

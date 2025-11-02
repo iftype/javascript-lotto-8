@@ -6,7 +6,9 @@ class LottoRepository {
   }
 
   save(id, data) {
-    this.#lottoDB.set(id, data);
+    const repoData = this.#lottoDB.get(id);
+    const insertData = { ...repoData, ...data };
+    this.#lottoDB.set(id, insertData);
   }
 
   update(id, data) {
