@@ -28,7 +28,7 @@ class LottoNumber {
   }
 
   static getRange() {
-    return { MIN_RANGE: this.#MIN_RANGE, MAX: this.#MAX_RANGE };
+    return { MIN_RANGE: this.#MIN_RANGE, MAX_RANGE: this.#MAX_RANGE };
   }
 
   getNumber() {
