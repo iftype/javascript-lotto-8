@@ -1,5 +1,5 @@
-import LottoStore from '../../src/domain/LottoStore.js';
-import Lotto from '../../src/domain/Lotto.js';
+import LottoStore from '../../src/domains/LottoStore.js';
+import Lotto from '../../src/domains/Lotto.js';
 
 const MOCK_NUMBERS = [1, 2, 3, 4, 5, 6];
 const mockLottoArray = MOCK_NUMBERS.map((num) => ({ getNumber: () => num }));

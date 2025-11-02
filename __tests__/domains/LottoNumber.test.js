@@ -1,5 +1,5 @@
 import LOTTO_SETTING from '../../src/constants/lottoSetting.js';
-import LottoNumber from '../../src/domain/LottoNumber.js';
+import LottoNumber from '../../src/domains/LottoNumber.js';
 
 const { MIN_RANGE, MAX_RANGE } = LOTTO_SETTING;
 describe('LottoNumber 클래스 테스트', () => {

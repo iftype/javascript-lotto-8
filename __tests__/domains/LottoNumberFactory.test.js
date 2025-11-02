@@ -1,6 +1,5 @@
-import LottoNumber from '../../src/domain/LottoNumber.js';
-import LottoNumberFactory from '../../src/domain/LottoNumberFactory.js';
-import LottoNumberFactoryCopy from '../../src/domain/LottoNumberFactory.js';
+import LottoNumberFactory from '../../src/domains/LottoNumberFactory.js';
+import LottoNumberFactoryCopy from '../../src/domains/LottoNumberFactory.js';
 import LOTTO_SETTING from '../../src/constants/lottoSetting.js';
 
 const { MIN_RANGE, MAX_RANGE } = LOTTO_SETTING;

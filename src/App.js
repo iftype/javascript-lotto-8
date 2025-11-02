@@ -1,14 +1,14 @@
-import LottoController from './controller/LottoController.js';
-import LottoFactory from './domain/LottoFacotry.js';
-import LottoStore from './domain/LottoStore.js';
-import LottoNumberFactory from './domain/LottoNumberFactory.js';
-import LottoRepository from './repository/LottoRepository.js';
-import LottoPurchaseService from './services/LottoPurchaseService.js';
+import LottoNumberFactory from './domains/LottoNumberFactory.js';
+import LottoFactory from './domains/LottoFacotry.js';
 import RandomPicker from './utils/RandomPicker.js';
-import LottoWinningFactory from './domain/LottoWinningFactory.js';
+import LottoStore from './domains/LottoStore.js';
+import LottoRepository from './repositories/LottoRepository.js';
+import LottoWinningFactory from './domains/LottoWinningFactory.js';
+import LottoPurchaseService from './services/LottoPurchaseService.js';
 import WinningResultService from './services/WinningResultService.js';
-import LottoInputView from './view/LottoInputView.js';
-import LottoOutputView from './view/LottoOutputView.js';
+import LottoInputView from './views/LottoInputView.js';
+import LottoOutputView from './views/LottoOutputView.js';
+import LottoController from './controllers/LottoController.js';
 
 class App {
   #lottoController;

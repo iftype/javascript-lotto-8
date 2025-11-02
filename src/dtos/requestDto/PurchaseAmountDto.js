@@ -1,4 +1,4 @@
-import InputPurchaseAmountValidator from '../../validator/inputValidator/InputPurchaseAmountValidator.js';
+import InputPurchaseAmountValidator from '../../validators/input/InputPurchaseAmountValidator.js';
 
 class PurchaseAmountDto {
   #purchaseAmount;

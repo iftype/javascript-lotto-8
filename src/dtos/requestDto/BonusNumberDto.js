@@ -1,4 +1,4 @@
-import InputBonusNumberValidator from '../../validator/inputValidator/InputBonusNumberValidator.js';
+import InputBonusNumberValidator from '../../validators/input/InputBonusNumberValidator.js';
 
 class BonusNumberDto {
   #bonusNumber;

@@ -1,6 +1,6 @@
 import LOTTO_SETTING from '../constants/lottoSetting.js';
-import PurchasedLottosDto from '../dto/responseDto/PurchasedLottosDto.js';
-import PurchaseValidator from '../validator/domainValidator/PurchaseValidator.js';
+import PurchasedLottosDto from '../dtos/responseDto/PurchasedLottosDto.js';
+import PurchaseValidator from '../validators/domain/PurchaseValidator.js';
 
 class LottoPurchaseService {
   constructor(lottoStore, lottoRepository) {

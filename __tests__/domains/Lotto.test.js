@@ -1,4 +1,4 @@
-import Lotto from '../../src/domain/Lotto.js';
+import Lotto from '../../src/domains/Lotto.js';
 import ERROR_MESSAGES from '../../src/constants/errorMessages.js';
 
 const MOCK_NUMBERS = [2, 1, 3, 4, 5, 6];

@@ -1,4 +1,4 @@
-import LottoFactory from '../../src/domain/LottoFacotry.js';
+import LottoFactory from '../../src/domains/LottoFacotry.js';
 
 const mockLottoNumberFactory = {
   getLottoNumber: jest.fn((number) => ({ getNumber: () => number })),

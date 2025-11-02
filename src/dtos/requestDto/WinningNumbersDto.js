@@ -1,5 +1,5 @@
 import Parser from '../../utils/Parser.js';
-import InputWinningNumberValidator from '../../validator/inputValidator/InputWinningNumberValidator.js';
+import InputWinningNumberValidator from '../../validators/input/InputWinningNumberValidator.js';
 
 class WinningNumbersDto {
   #winningNumbers;

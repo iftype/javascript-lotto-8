@@ -1,6 +1,6 @@
-import BonusNumberDto from '../dto/requestDto/BonusNumberDto.js';
-import PurchaseAmountDto from '../dto/requestDto/PurchaseAmountDto.js';
-import WinningNumbersDto from '../dto/requestDto/WinningNumbersDto.js';
+import BonusNumberDto from '../dtos/requestDto/BonusNumberDto.js';
+import PurchaseAmountDto from '../dtos/requestDto/PurchaseAmountDto.js';
+import WinningNumbersDto from '../dtos/requestDto/WinningNumbersDto.js';
 
 class LottoController {
   #lottoPurchaseService;

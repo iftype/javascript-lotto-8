@@ -1,7 +1,7 @@
-import WinningNumbersValidator from '../validator/domainValidator/WinningNumbersValidator.js';
-import BonusNumberValidator from '../validator/domainValidator/BonusNumberValidator.js';
-import LottoWinningResult from '../domain/LottoWinningResult.js';
-import WinningResultDto from '../dto/responseDto/WinningResultDto.js';
+import WinningNumbersValidator from '../validators/domain/WinningNumbersValidator.js';
+import BonusNumberValidator from '../validators/domain/BonusNumberValidator.js';
+import LottoWinningResult from '../domains/LottoWinningResult.js';
+import WinningResultDto from '../dtos/responseDto/WinningResultDto.js';
 
 class WinningResultService {
   constructor(winningFactory, lottoRepository) {

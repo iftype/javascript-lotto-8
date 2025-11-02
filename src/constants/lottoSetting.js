@@ -1,5 +1,4 @@
 const LOTTO_SETTING = Object.freeze({
-  MAX_QUANTITY: 6,
   PRIZES: Object.freeze({
     FIRST: 2000000000,
     SECOND: 30000000,
@@ -8,6 +7,7 @@ const LOTTO_SETTING = Object.freeze({
     FIFTH: 5000,
     OTHER: 0,
   }),
+  MAX_QUANTITY: 6,
   MIN_RANGE: 1,
   MAX_RANGE: 45,
   PURCHASE_UNIT: 1000,
