@@ -14,7 +14,6 @@ describe('LottoNumberFactory 테스트', () => {
   }); // 생성 테스트
 
   describe('메서드 getLottoNumber 에러테스트', () => {
-    console.log(MIN_RANGE, 'asd');
     test.each([[MIN_RANGE - 1], [MAX_RANGE + 1]])('❌에러 테스트(%s) throw Error %s', (test) => {
       expect(() => LottoNumberFactory.getLottoNumber(test)).toThrow('[ERROR]');
     }); // 실패테스트

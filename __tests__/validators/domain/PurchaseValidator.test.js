@@ -1,16 +1,11 @@
-import ERROR_MESSAGES from '../../src/constants/errorMessages.js';
-import PurchaseValidator from '../../src/validator/PurchaseValidator.js';
+import ERROR_MESSAGES from '../../../src/constants/errorMessages.js';
+import PurchaseValidator from '../../../src/validators/domain/PurchaseValidator.js';
 
 describe('PurchaseValidator 클래스 테스트', () => {
   describe('구매금액 유효성 검사 ⭕실패 테스트', () => {
     test.each([
-      // 숫자변환검사
-      ['1,000', ERROR_MESSAGES.FORMAT_NOT_NUM],
-      // 정수검사
-      ['10.5', ERROR_MESSAGES.INTEGER],
-      // 나머지 테스트
-      [-1500, ERROR_MESSAGES.PURCHASE_UNIT],
-      [900, ERROR_MESSAGES.PURCHASE_UNIT],
+      [999, ERROR_MESSAGES.PURCHASE_LESS],
+
       [1500, ERROR_MESSAGES.PURCHASE_UNIT],
     ])('❌ validate 테스트 %s throw Error %s', (amount, errorMessage) => {
       expect(() => PurchaseValidator.validate(amount)).toThrow(errorMessage);
