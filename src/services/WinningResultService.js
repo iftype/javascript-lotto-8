@@ -28,13 +28,13 @@ class WinningResultService {
 
   getWinningResult() {
     const db = this.#lottoRepository.findAll('admin');
-    const { purchaseAmount, lottos, winningLotto, bonusLotto } = db;
+    const { lottoPrice, lottos, winningLotto, bonusLotto } = db;
     const { winningStats, totalWinningAmount } = LottoWinningResult.getWinningStats(
       lottos,
       winningLotto,
       bonusLotto,
     );
-    const winningRate = LottoWinningResult.getWinningRate(purchaseAmount, totalWinningAmount);
+    const winningRate = lottoPrice.getWinningRate(totalWinningAmount);
     this.#lottoRepository.save('admin', { winningStats, winningRate });
     return new WinningResultDto({ winningStats, winningRate });
   }

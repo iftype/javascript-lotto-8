@@ -7,7 +7,6 @@ const LOTTO_SETTING = Object.freeze({
     FIFTH: 5000,
     OTHER: 0,
   }),
-  PURCHASE_UNIT: 1000,
 });
 
 export default LOTTO_SETTING;

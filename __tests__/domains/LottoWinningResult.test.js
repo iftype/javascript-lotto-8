@@ -40,12 +40,4 @@ describe('LottoWinningFactory 테스트', () => {
       },
     ); // 성공 테스트
   }); // 생성 테스트
-  describe('getWinningRate(purchaseAmount, totalWinningAmount)테스트', () => {
-    test.each([
-      [8000, 5000, '62.5'],
-      [12000, 7000, '58.3'],
-    ])('getWinningRate(%s, %s) 반환 값 %s', (purchaseAmount, totalWinningAmount, result) => {
-      expect(LottoWinningResult.getWinningRate(purchaseAmount, totalWinningAmount)).toBe(result);
-    }); // 실패테스트
-  }); // 생성 테스트
 }); // 설명

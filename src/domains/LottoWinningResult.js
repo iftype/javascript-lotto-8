@@ -12,12 +12,6 @@ class LottoWinningResult {
     return { winningStats, totalWinningAmount };
   }
 
-  // 수익률
-  static getWinningRate(purchaseAmount, totalWinningAmount) {
-    if (totalWinningAmount === 0) return 0;
-    return ((totalWinningAmount / purchaseAmount) * 100).toFixed(1);
-  }
-
   // #당첨 카운트 반환 형식 [winning:일치 갯수, bonus: 보너스여부]
   static #getWinningMatch(lottos, winnintLottos, bonusLotto) {
     return lottos.map((lotto) => ({
