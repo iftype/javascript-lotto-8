@@ -1,6 +1,6 @@
 import LottoNumberFactory from './domains/LottoNumberFactory.js';
 import LottoFactory from './domains/LottoFacotry.js';
-import RandomPicker from './utils/RandomPicker.js';
+import RandomPicker from './domains/RandomPicker.js';
 import LottoStore from './domains/LottoStore.js';
 import LottoRepository from './repositories/LottoRepository.js';
 import LottoWinningFactory from './domains/LottoWinningFactory.js';

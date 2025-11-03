@@ -1,6 +1,6 @@
 import { Random } from '@woowacourse/mission-utils';
-import LottoNumber from '../domains/LottoNumber.js';
-import Lotto from '../domains/Lotto.js';
+import LottoNumber from './LottoNumber.js';
+import Lotto from './Lotto.js';
 
 class RandomPicker {
   pick() {
