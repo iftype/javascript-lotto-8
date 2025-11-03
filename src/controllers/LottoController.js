@@ -15,41 +15,67 @@ class LottoController {
     this.#lottoOutputView = lottoOutputView;
   }
 
-  async processLottoPurchase() {
+  async runLotto() {
+    try {
+      await this.#processPurchaseAmount();
+      this.#processLottoPurchase();
+
+      await this.#processWinningNumbers();
+      await this.#processBonusNumbers();
+      this.#processWinningResult();
+      return true;
+    } catch (err) {
+      this.#lottoOutputView.printError(err);
+      return false;
+    }
+  }
+
+  async #processPurchaseAmount() {
     try {
       const purchaseAmount = await this.#lottoInputView.readPurchaseAmount();
       const purchaseAmountDto = new PurchaseAmountDto(purchaseAmount);
       this.#lottoPurchaseService.savePurchaseAmount(purchaseAmountDto);
-
-      const purchasedLottos = this.#lottoPurchaseService.getPurchasedLottos();
-      const purchasedLottosDto = purchasedLottos.toJSON();
-      this.#lottoOutputView.printPurchaseLottos(purchasedLottosDto);
-      return this.#processWinningResult();
+      return true;
     } catch (err) {
       this.#lottoOutputView.printError(err);
-      return this.processLottoPurchase();
+      return this.#processPurchaseAmount();
     }
   }
 
-  async #processWinningResult() {
+  async #processWinningNumbers() {
     try {
       const winningNumbers = await this.#lottoInputView.readWinningNumbers();
       const purchaseAmountDto = new WinningNumbersDto(winningNumbers);
       this.#winningResultService.saveWinningNumbers(purchaseAmountDto);
-
-      const bonusNumber = await this.#lottoInputView.readBonusNumber();
-      const bonusNumberDto = new BonusNumberDto(bonusNumber);
-      this.#winningResultService.saveBonusNumber(bonusNumberDto);
-
-      const winningResult = this.#winningResultService.getWinningResult();
-      const winningResultDto = winningResult.toJSON();
-      this.#lottoOutputView.printWinningResult(winningResultDto);
-
       return true;
     } catch (err) {
       this.#lottoOutputView.printError(err);
-      return this.#processWinningResult();
+      return this.#processWinningNumbers();
     }
+  }
+
+  async #processBonusNumbers() {
+    try {
+      const bonusNumber = await this.#lottoInputView.readBonusNumber();
+      const bonusNumberDto = new BonusNumberDto(bonusNumber);
+      this.#winningResultService.saveBonusNumber(bonusNumberDto);
+      return true;
+    } catch (err) {
+      this.#lottoOutputView.printError(err);
+      return this.#processBonusNumbers();
+    }
+  }
+
+  #processLottoPurchase() {
+    const purchasedLottos = this.#lottoPurchaseService.getPurchasedLottos();
+    const purchasedLottosDto = purchasedLottos.toJSON();
+    this.#lottoOutputView.printPurchaseLottos(purchasedLottosDto);
+  }
+
+  #processWinningResult() {
+    const winningResult = this.#winningResultService.getWinningResult();
+    const winningResultDto = winningResult.toJSON();
+    this.#lottoOutputView.printWinningResult(winningResultDto);
   }
 }
 

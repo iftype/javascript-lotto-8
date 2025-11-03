@@ -33,7 +33,7 @@ class App {
   }
 
   async run() {
-    await this.#lottoController.processLottoPurchase();
+    await this.#lottoController.runLotto();
   }
 }
 
