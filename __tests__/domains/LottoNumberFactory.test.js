@@ -1,8 +1,8 @@
 import LottoNumberFactory from '../../src/domains/LottoNumberFactory.js';
 import LottoNumberFactoryCopy from '../../src/domains/LottoNumberFactory.js';
-import LOTTO_SETTING from '../../src/constants/lottoSetting.js';
+import LottoNumber from '../../src/domains/LottoNumber.js';
 
-const { MIN_RANGE, MAX_RANGE } = LOTTO_SETTING;
+const { MIN_RANGE, MAX_RANGE } = LottoNumber.getRange();
 describe('LottoNumberFactory 테스트', () => {
   beforeEach(() => {});
 

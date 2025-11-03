@@ -1,7 +1,6 @@
-import LOTTO_SETTING from '../../src/constants/lottoSetting.js';
 import LottoNumber from '../../src/domains/LottoNumber.js';
 
-const { MIN_RANGE, MAX_RANGE } = LOTTO_SETTING;
+const { MIN_RANGE, MAX_RANGE } = LottoNumber.getRange();
 describe('LottoNumber 클래스 테스트', () => {
   describe('생성자 에러 검사', () => {
     test(`최소범위 테스트 ${MIN_RANGE - 1}`, () => {

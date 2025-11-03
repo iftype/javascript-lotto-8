@@ -2,7 +2,7 @@ import LOTTO_SETTING from './lottoSetting.js';
 
 const PREFIX = '[ERROR]';
 const format = (unit) => new Intl.NumberFormat().format(unit);
-const { PURCHASE_UNIT, MAX_QUANTITY, MAX_LANGE, MIN_RANGE } = LOTTO_SETTING;
+const { PURCHASE_UNIT, MAX_QUANTITY } = LOTTO_SETTING;
 
 const ERROR_MESSAGES = Object.freeze({
   INTEGER: `${PREFIX}입력 값이 정수여야 합니다`,
@@ -15,7 +15,8 @@ const ERROR_MESSAGES = Object.freeze({
 
   LOTTO_DUPLICATE: `${PREFIX}로또 번호가 중복됐습니다`,
   LOTTO_QUANTITY: `${PREFIX}로또 번호는 ${MAX_QUANTITY} 만큼 생성되어야 합니다 `,
-  LOTTO_RANGE: `${PREFIX}로또 번호는 ${MIN_RANGE}부터${MAX_LANGE}여야 합니다`,
+  LOTTO_RANGE: (MIN_RANGE, MAX_RANGE) =>
+    `${PREFIX}로또 번호는 ${MIN_RANGE}부터 ${MAX_RANGE}여야 합니다`,
 });
 
 export default ERROR_MESSAGES;

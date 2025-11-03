@@ -1,7 +1,8 @@
 import ERROR_MESSAGES from '../constants/errorMessages.js';
-import LOTTO_SETTING from '../constants/lottoSetting.js';
 
 class LottoNumber {
+  static #MIN_RANGE = 1;
+  static #MAX_RANGE = 45;
   #number;
 
   constructor(number) {
@@ -14,7 +15,7 @@ class LottoNumber {
       throw new Error(ERROR_MESSAGES.INTEGER);
     }
     if (!this.#isInRange(number)) {
-      throw new Error(ERROR_MESSAGES.LOTTO_RANGE);
+      throw new Error(ERROR_MESSAGES.LOTTO_RANGE(LottoNumber.#MIN_RANGE, LottoNumber.#MAX_RANGE));
     }
   }
 
@@ -23,8 +24,11 @@ class LottoNumber {
   }
 
   #isInRange(number) {
-    const { MAX_RANGE, MIN_RANGE } = LOTTO_SETTING;
-    return MIN_RANGE <= number && number <= MAX_RANGE;
+    return LottoNumber.#MIN_RANGE <= number && number <= LottoNumber.#MAX_RANGE;
+  }
+
+  static getRange() {
+    return { MIN_RANGE: LottoNumber.#MIN_RANGE, MAX_RANGE: LottoNumber.#MAX_RANGE };
   }
 
   getNumber() {

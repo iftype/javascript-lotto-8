@@ -8,9 +8,6 @@ describe('WinningNumbersValidator 클래스 테스트', () => {
       [[1, 2, 3, 4, 5, 6, 7], ERROR_MESSAGES.LOTTO_QUANTITY],
 
       [[1, 2, 3, 4, 5, 5], ERROR_MESSAGES.LOTTO_DUPLICATE],
-
-      [[0, 2, 3, 4, 5, 6], ERROR_MESSAGES.LOTTO_RANGE],
-      [[1, 2, 3, 4, 5, 46], ERROR_MESSAGES.LOTTO_RANGE],
     ])('❌ validate 테스트 %s throw Error %s', (numbers, errorMessage) => {
       expect(() => WinningNumbersValidator.validate(numbers)).toThrow(errorMessage);
     }); // 실패테스트

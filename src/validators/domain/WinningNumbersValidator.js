@@ -9,14 +9,6 @@ class WinningNumbersValidator {
     if (!WinningNumbersValidator.#isDuplicate(winningNumbers)) {
       throw new Error(ERROR_MESSAGES.LOTTO_DUPLICATE);
     }
-    if (!WinningNumbersValidator.#isInRange(winningNumbers)) {
-      throw new Error(ERROR_MESSAGES.LOTTO_RANGE);
-    }
-  }
-
-  static #isInRange(winningNumbers) {
-    const { MIN_RANGE, MAX_RANGE } = LOTTO_SETTING;
-    return winningNumbers.every((number) => MIN_RANGE <= number && number <= MAX_RANGE);
   }
 
   static #isDuplicate(winningNumbers) {

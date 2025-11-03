@@ -8,8 +8,6 @@ const LOTTO_SETTING = Object.freeze({
     OTHER: 0,
   }),
   MAX_QUANTITY: 6,
-  MIN_RANGE: 1,
-  MAX_RANGE: 45,
   PURCHASE_UNIT: 1000,
 });
 
