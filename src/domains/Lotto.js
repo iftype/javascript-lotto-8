@@ -1,12 +1,17 @@
 import ERROR_MESSAGES from '../constants/errorMessages.js';
+import LottoNumberFactory from './LottoNumberFactory.js';
 
 class Lotto {
   static #MAX_QUANTITY = 6;
   #lottoNumbers;
 
   constructor(numbers) {
-    this.#lottoNumbers = new Set(numbers);
+    this.#lottoNumbers = new Set(this.#createLotto(numbers));
     this.#validate(numbers);
+  }
+
+  #createLotto(numbers) {
+    return numbers.map((num) => LottoNumberFactory.getLottoNumber(num));
   }
 
   #validate(numbers) {

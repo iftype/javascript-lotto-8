@@ -2,11 +2,10 @@ import LottoPrice from '../domains/LottoPrice.js';
 import PurchasedLottosDto from '../dtos/responseDto/PurchasedLottosDto.js';
 
 class LottoPurchaseService {
-  #lottoStore;
   #lottoRepository;
-
-  constructor(lottoStore, lottoRepository) {
-    this.#lottoStore = lottoStore;
+  #randomLottoFactory;
+  constructor(randomLottoFactory, lottoRepository) {
+    this.#randomLottoFactory = randomLottoFactory;
     this.#lottoRepository = lottoRepository;
   }
 
@@ -19,7 +18,7 @@ class LottoPurchaseService {
   getPurchasedLottos() {
     const { lottoPrice } = this.#lottoRepository.findAll('admin');
     const lottoCount = lottoPrice.exchange();
-    const lottos = this.#lottoStore.buyLotto(lottoCount);
+    const lottos = Array.from({ length: lottoCount }, () => this.#randomLottoFactory.createLotto());
     this.#lottoRepository.save('admin', { lottos });
     return new PurchasedLottosDto({ lottos });
   }

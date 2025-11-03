@@ -1,10 +1,10 @@
 import Lotto from '../../src/domains/Lotto.js';
 import ERROR_MESSAGES from '../../src/constants/errorMessages.js';
+import LottoNumberFactoryInstance from '../../src/domains/LottoNumberFactory.js';
 
 const MOCK_NUMBERS = [2, 1, 3, 4, 5, 6];
-const mockLottoNumber = (num) => ({ getNumber: () => num, hasLottoNumber: (n) => n === num });
-const mockLottoArray = MOCK_NUMBERS.map((num) => mockLottoNumber(num));
-const mockLotto = new Lotto(mockLottoArray);
+const mockLotto = new Lotto(MOCK_NUMBERS);
+const mockLottoCopy = LottoNumberFactoryInstance.getLottoNumber(1);
 const { MAX_QUANTITY } = Lotto.getQuan();
 
 describe('로또 클래스 테스트', () => {
@@ -31,8 +31,7 @@ describe('로또 클래스 테스트', () => {
     }); // 성공 테스트
 
     test('⭕메서드 테스트 hasLottoNumber(lottoNumber)', () => {
-      const test = mockLottoArray.find((obj) => obj.getNumber() === 3);
-      expect(mockLotto.hasLottoNumber(test)).toBe(true);
+      expect(mockLotto.hasLottoNumber(mockLottoCopy)).toBe(true);
     }); // 성공 테스트
   });
 });

@@ -1,19 +1,19 @@
 import BonusNumberValidator from '../validators/domain/BonusNumberValidator.js';
 import LottoWinningResult from '../domains/LottoWinningResult.js';
 import WinningResultDto from '../dtos/responseDto/WinningResultDto.js';
+import Lotto from '../domains/Lotto.js';
+import LottoNumberFactory from '../domains/LottoNumberFactory.js';
 
 class WinningResultService {
-  #winningFactory;
   #lottoRepository;
 
-  constructor(winningFactory, lottoRepository) {
-    this.#winningFactory = winningFactory;
+  constructor(lottoRepository) {
     this.#lottoRepository = lottoRepository;
   }
 
   saveWinningNumbers(requestDTO) {
     const { winningNumbers } = requestDTO;
-    const winningLotto = this.#winningFactory.createWinningLotto(winningNumbers);
+    const winningLotto = new Lotto(winningNumbers);
     this.#lottoRepository.save('admin', { winningLotto });
   }
 
@@ -21,7 +21,7 @@ class WinningResultService {
     const { bonusNumber } = requestDTO;
     const { winningLotto } = this.#lottoRepository.findAll('admin');
     // 객체끼리의 비교를 위해 먼저 생성
-    const bonusLotto = this.#winningFactory.createBonusLotto(bonusNumber);
+    const bonusLotto = LottoNumberFactory.getLottoNumber(bonusNumber);
     BonusNumberValidator.validate(winningLotto, bonusLotto);
     this.#lottoRepository.save('admin', { bonusLotto });
   }
