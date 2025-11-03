@@ -8,7 +8,7 @@ class BonusNumberValidator {
   }
 
   static #isDuplicate(winningLottoNumbers, bonusLottoNumber) {
-    return winningLottoNumbers.includes(bonusLottoNumber);
+    return winningLottoNumbers.hasLottoNumber(bonusLottoNumber);
   }
 }
 

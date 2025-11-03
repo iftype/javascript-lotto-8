@@ -1,7 +1,7 @@
 import ERROR_MESSAGES from '../constants/errorMessages.js';
-import LOTTO_SETTING from '../constants/lottoSetting.js';
 
 class Lotto {
+  static #MAX_QUANTITY = 6;
   #lottoNumbers;
 
   constructor(numbers) {
@@ -11,7 +11,7 @@ class Lotto {
 
   #validate(numbers) {
     if (!this.#isQuantity(numbers)) {
-      throw new Error(ERROR_MESSAGES.LOTTO_QUANTITY);
+      throw new Error(ERROR_MESSAGES.LOTTO_QUANTITY(Lotto.#MAX_QUANTITY));
     }
     if (!this.#isDuplicate(numbers)) {
       throw new Error(ERROR_MESSAGES.LOTTO_DUPLICATE);
@@ -19,7 +19,7 @@ class Lotto {
   }
 
   #isQuantity(numbers) {
-    return numbers.length === LOTTO_SETTING.MAX_QUANTITY;
+    return numbers.length === Lotto.#MAX_QUANTITY;
   }
 
   #isDuplicate(numbers) {
@@ -31,7 +31,12 @@ class Lotto {
   }
 
   countNumbers(numbers) {
-    return numbers.filter((number) => this.#lottoNumbers.has(number)).length;
+    const intersection = new Set([...this.#lottoNumbers].filter((x) => numbers.hasLottoNumber(x)));
+    return intersection.size;
+  }
+
+  static getQuan() {
+    return { MAX_QUANTITY: this.#MAX_QUANTITY };
   }
 
   getNumbers() {

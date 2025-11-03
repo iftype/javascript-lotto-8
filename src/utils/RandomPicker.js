@@ -1,11 +1,11 @@
 import { Random } from '@woowacourse/mission-utils';
-import LOTTO_SETTING from '../constants/lottoSetting.js';
 import LottoNumber from '../domains/LottoNumber.js';
+import Lotto from '../domains/Lotto.js';
 
 class RandomPicker {
   pick() {
     const { MIN_RANGE, MAX_RANGE } = LottoNumber.getRange();
-    const { MAX_QUANTITY } = LOTTO_SETTING;
+    const { MAX_QUANTITY } = Lotto.getQuan();
     return Random.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, MAX_QUANTITY);
   }
 }

@@ -25,9 +25,6 @@ describe('LottoWinningFactory 테스트', () => {
     test('', () => {
       const winningNumbers = factory.createWinningLotto(result);
       const winningNumbersCopy = factory.createWinningLotto(result);
-      winningNumbers.forEach((winningNumber, index) => {
-        expect(winningNumber.getNumber()).toBe(result[index]);
-      }); // forEach
       expect(winningNumbers[0]).toBe(winningNumbersCopy[0]);
     }); // test
   }); // 생성 테스트

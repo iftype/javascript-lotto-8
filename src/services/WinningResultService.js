@@ -1,4 +1,3 @@
-import WinningNumbersValidator from '../validators/domain/WinningNumbersValidator.js';
 import BonusNumberValidator from '../validators/domain/BonusNumberValidator.js';
 import LottoWinningResult from '../domains/LottoWinningResult.js';
 import WinningResultDto from '../dtos/responseDto/WinningResultDto.js';
@@ -14,7 +13,6 @@ class WinningResultService {
 
   saveWinningNumbers(requestDTO) {
     const { winningNumbers } = requestDTO;
-    WinningNumbersValidator.validate(winningNumbers);
     const winningLotto = this.#winningFactory.createWinningLotto(winningNumbers);
     this.#lottoRepository.save('admin', { winningLotto });
   }

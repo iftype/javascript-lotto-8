@@ -1,3 +1,5 @@
+import Lotto from './Lotto.js';
+
 class LottoWinningFactory {
   #lottoNumberFactory;
 
@@ -6,7 +8,8 @@ class LottoWinningFactory {
   }
 
   createWinningLotto(numbers) {
-    return numbers.map((number) => this.#lottoNumberFactory.getLottoNumber(number));
+    const newNumbers = numbers.map((number) => this.#lottoNumberFactory.getLottoNumber(number));
+    return new Lotto(newNumbers);
   }
 
   createBonusLotto(number) {
