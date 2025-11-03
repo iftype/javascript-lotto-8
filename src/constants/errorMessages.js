@@ -2,6 +2,7 @@ const PREFIX = '[ERROR]';
 const format = (unit) => new Intl.NumberFormat().format(unit);
 
 const ERROR_MESSAGES = Object.freeze({
+  NOT_DATA: `저장된 데이터가 없습니다`,
   INTEGER: `${PREFIX}입력 값이 정수여야 합니다`,
   BLANK: `${PREFIX}입력 값이 비었습니다`,
 

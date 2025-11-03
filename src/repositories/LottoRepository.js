@@ -1,3 +1,5 @@
+import ERROR_MESSAGES from '../constants/errorMessages.js';
+
 class LottoRepository {
   #lottoDB;
 
@@ -13,7 +15,7 @@ class LottoRepository {
 
   update(id, data) {
     if (!this.#lottoDB.has(id)) {
-      throw new Error('저장된 데이터가 없습니다');
+      throw new Error(ERROR_MESSAGES.NOT_DATA);
     }
     const repoData = this.#lottoDB.get(id);
     const insertData = { ...repoData, ...data };
@@ -22,7 +24,7 @@ class LottoRepository {
 
   findAll(id) {
     if (!this.#lottoDB.has(id)) {
-      throw new Error('저장된 데이터가 없습니다');
+      throw new Error(ERROR_MESSAGES.NOT_DATA);
     }
     return this.#lottoDB.get(id);
   }
