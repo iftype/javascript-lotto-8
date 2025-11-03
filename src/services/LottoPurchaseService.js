@@ -12,14 +12,17 @@ class LottoPurchaseService {
   savePurchaseAmount(requestDTO) {
     const { purchaseAmount } = requestDTO;
     const lottoPrice = new LottoPrice(purchaseAmount);
-    this.#lottoRepository.save('admin', { lottoPrice });
+    this.#lottoRepository.save('admin', { purchaseAmount: lottoPrice.purchaseAmount });
   }
 
   getPurchasedLottos() {
-    const { lottoPrice } = this.#lottoRepository.findAll('admin');
+    const { purchaseAmount } = this.#lottoRepository.findAll('admin');
+    const lottoPrice = new LottoPrice(purchaseAmount);
     const lottoCount = lottoPrice.exchange();
     const lottos = Array.from({ length: lottoCount }, () => this.#randomLottoFactory.createLotto());
-    this.#lottoRepository.save('admin', { lottos });
+
+    const insertLotto = lottos.map((lotto) => lotto.getNumbers());
+    this.#lottoRepository.save('admin', { lottos: insertLotto });
     return new PurchasedLottosDto({ lottos });
   }
 }

@@ -45,5 +45,9 @@ class LottoPrice {
     if (totalWinningAmount === 0) return 0;
     return ((totalWinningAmount / this.#purchaseAmount) * 100).toFixed(1);
   }
+
+  get purchaseAmount() {
+    return this.#purchaseAmount;
+  }
 }
 export default LottoPrice;
